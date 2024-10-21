@@ -164,8 +164,8 @@
           ansible.builtin.user:
             name: "testuser9"
             password: "*"
-            expires: -1
-            password_expire_max: -1
+            expires: -1  # the Ansible docs mentions that using a -1 removed the expiry
+            password_expire_max: -1  # is it ok, or even needed, to do this as well?
 
         - shell: chage -l testuser9
           register: user
