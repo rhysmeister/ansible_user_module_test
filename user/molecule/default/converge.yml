@@ -1,0 +1,175 @@
+---
+- name: Converge
+  hosts: all
+  gather_facts: false
+
+  tasks:
+
+
+    - name: Test case 1
+      block:
+        - name: Test user 1
+          ansible.builtin.user:
+            name: "testuser1"
+
+        - shell: chage -l testuser1
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+        - name: Test user 1
+          ansible.builtin.user:
+            name: "testuser1"
+            password: "!"
+
+        - shell: chage -l testuser1
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+    - name: Test case 2
+      block:
+        - name: Test user 2
+          ansible.builtin.user:
+            name: "testuser2"
+            password: "!"
+
+        - shell: chage -l testuser2
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+    - name: Test case 3
+      block:
+        - name: Test user 3
+          ansible.builtin.user:
+            name: "testuser3"
+            password: "*"
+
+        - shell: chage -l testuser3
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+    - name: Test case 4
+      block:
+        - name: Test user 4
+          ansible.builtin.user:
+            name: "testuser4"
+            password: "*"
+
+        - shell: chage -l testuser4
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+    - name: Test case 5
+      block:
+        - name: Test user 5
+          ansible.builtin.user:
+            name: "testuser5"
+            password: "Somenormalpassword"
+
+        - shell: chage -l testuser5
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+    - name: Test case 6
+      block:
+        - name: Test user 6
+          ansible.builtin.user:
+            name: "testuser6"
+            password: "!"
+
+        - shell: chage -l testuser6
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+    - name: Test case 7
+      block:
+        - name: Test user 7
+          ansible.builtin.user:
+            name: "testuser7"
+            password: "!"
+            expires: -1
+            password_expire_max: -1
+
+        - shell: chage -l testuser7
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+         
+    - name: Test case 8
+      block:
+        - name: Test user 8
+          ansible.builtin.user:
+            name: "testuser8"
+            password: "*"
+            expires: -1
+            password_expire_max: -1
+
+        - shell: chage -l testuser8
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+        
+    - name: Test case 9
+      block:
+        - name: Test user 9
+          ansible.builtin.user:
+            name: testuser9
+            password: "S0mePassword"
+            password_expire_max: 365
+
+        - shell: chage -l testuser9
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+        - name: Test user 9
+          ansible.builtin.user:
+            name: testuser9
+            password: "!"
+
+        - shell: chage -l testuser9
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
+
+        - name: Test user 9
+          ansible.builtin.user:
+            name: "testuser9"
+            password: "*"
+            expires: -1
+            password_expire_max: -1
+
+        - shell: chage -l testuser9
+          register: user
+          changed_when: false
+
+        - debug:
+            var: user
